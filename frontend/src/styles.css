@@ -1,23 +1,7 @@
 body {
     margin: 0;
     min-width: 320px;
-    background:
-        radial-gradient(
-            circle at 12% 18%,
-            rgba(255, 0, 199, 0.48),
-            transparent 24%
-        ),
-        radial-gradient(
-            circle at 88% 8%,
-            rgba(0, 255, 195, 0.46),
-            transparent 22%
-        ),
-        radial-gradient(
-            circle at 42% 92%,
-            rgba(255, 241, 0, 0.42),
-            transparent 28%
-        ),
-        url("../assets/faces.jpg") center / 280px auto repeat fixed;
+    background: url("../assets/SNAK8_1.png") center / 50px auto repeat fixed;
     color: #120019;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
@@ -55,6 +39,134 @@ body::before {
         2px 2px 0 #fff100,
         -2px -1px 0 #00ffc3,
         4px 4px 0 #ff00c7;
+}
+
+.yarly-title {
+    margin: 8px 0 28px;
+    overflow: visible;
+}
+
+.title-image-stack {
+    position: relative;
+    isolation: isolate;
+    width: fit-content;
+    max-width: 100%;
+    padding: 20px 24px 24px;
+    transform: rotate(-1.2deg);
+}
+
+.title-image-stack::before,
+.title-image-stack::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.title-image-stack::before {
+    inset: -34px -48px -38px;
+    background:
+        radial-gradient(
+            circle at 16% 32%,
+            rgba(255, 241, 0, 0.95),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 58% 18%,
+            rgba(0, 255, 195, 0.88),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 86% 62%,
+            rgba(255, 0, 199, 0.9),
+            transparent 34%
+        ),
+        conic-gradient(
+            from 24deg,
+            rgba(255, 0, 199, 0.68),
+            rgba(0, 255, 195, 0.7),
+            rgba(255, 241, 0, 0.7),
+            rgba(38, 0, 255, 0.68),
+            rgba(255, 0, 199, 0.68)
+        );
+    border-radius: 999px 42px 999px 72px;
+    filter: blur(16px) saturate(220%) contrast(145%);
+    opacity: 0.96;
+    transform: skew(-8deg, 3deg) scale(1.04);
+}
+
+/* .title-image-stack::after {
+    inset: 7px 1px -18px 18px;
+    background: linear-gradient(
+        100deg,
+        rgba(13, 0, 34, 0.85),
+        rgba(255, 0, 199, 0.35)
+    );
+    border-radius: 28px 110px 36px 140px;
+    box-shadow:
+        0 32px 44px rgba(0, 0, 0, 0.78),
+        0 0 58px rgba(255, 0, 199, 0.96),
+        0 0 88px rgba(0, 255, 195, 0.78);
+    opacity: 0.78;
+    transform: rotate(2.4deg);
+} */
+
+.title-image-frame {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    filter: drop-shadow(3px 35px 1px rgba(12, 0, 26, 0.82))
+        drop-shadow(0 0 18px rgba(255, 241, 0, 0.95))
+        drop-shadow(0 0 32px rgba(255, 0, 199, 0.92));
+}
+
+.title-image-frame::before {
+    content: "";
+    position: absolute;
+    inset: -12px -16px;
+    z-index: -1;
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.82), transparent 38%),
+        radial-gradient(
+            circle at 22% 76%,
+            rgba(0, 255, 195, 0.88),
+            transparent 58%
+        );
+    border-radius: 50%;
+    filter: blur(9px);
+    opacity: 0.95;
+    transform: rotate(-6deg);
+}
+
+.title-image-frame-yarlys {
+    transform: translateY(4px) rotate(-2deg);
+}
+
+.title-image-frame-most {
+    transform: translateY(-8px) rotate(4deg);
+    filter: drop-shadow(2px 6px 1px rgba(12, 0, 26, 0.82))
+        drop-shadow(0 0 20px rgba(0, 255, 195, 0.95))
+        drop-shadow(0 0 38px rgba(38, 0, 255, 0.9));
+}
+
+.title-image-frame-recent {
+    transform: translateY(6px) rotate(-3deg);
+    filter: drop-shadow(8px 11px 0 rgba(12, 0, 26, 0.82))
+        drop-shadow(0 0 22px rgba(255, 122, 0, 0.98))
+        drop-shadow(0 0 42px rgba(255, 0, 199, 0.9));
+}
+
+.title-image,
+.title-image img {
+    display: block;
+    width: auto;
+    max-width: min(82vw, 260px);
+    max-height: 112px;
+    height: auto;
+    border: 0;
+    filter: saturate(1.55) contrast(1.2);
 }
 
 .mantine-Anchor-root {
@@ -135,6 +247,25 @@ body::before {
 @media (max-width: 48em) {
     body {
         background-size: 220px auto;
+    }
+
+    .title-image-stack {
+        padding: 14px 14px 18px;
+        transform: none;
+    }
+
+    .title-image-stack::before {
+        inset: -18px -16px -24px;
+        filter: blur(12px) saturate(190%) contrast(130%);
+    }
+
+    .title-image-frame {
+        transform: none;
+    }
+
+    .title-image,
+    .title-image img {
+        max-width: 28vw;
     }
 
     .mantine-Paper-root,

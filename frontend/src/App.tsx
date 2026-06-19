@@ -22,6 +22,10 @@ import type { User } from "oidc-client-ts";
 import { getPost, listAdminPosts, listPosts, removePost } from "./api";
 import { getUser, handleLoginCallback, login, logout } from "./auth";
 import type { AdminPost, PublicPost } from "./types";
+import mostImage from "../assets/most.png";
+import recentImage from "../assets/recent.png";
+import yarlysImage from "../assets/yarlys.png";
+import meekmailImage from "../assets/meekmail.png";
 
 export function App() {
     const path = window.location.pathname;
@@ -55,7 +59,13 @@ function Shell({
                 <Container size="lg" h="100%">
                     <Group h="100%" justify="space-between">
                         <Anchor href="/" c="dark" underline="never">
-                            <Title order={2}>meekmail</Title>
+                            <Title order={2}>
+                                <Image
+                                    src={meekmailImage}
+                                    alt="meekmail"
+                                    className="title-image"
+                                />
+                            </Title>
                         </Anchor>
                         {right}
                     </Group>
@@ -83,7 +93,35 @@ function PostList() {
     return (
         <Shell right={<Anchor href="/admin">Admin</Anchor>}>
             <Stack gap="lg">
-                <Title order={1}>yarly</Title>
+                <Title
+                    order={1}
+                    className="yarly-title"
+                    aria-label="yarly most recent"
+                >
+                    <Group className="title-image-stack" gap="xs">
+                        <span className="title-image-frame title-image-frame-yarlys">
+                            <Image
+                                src={yarlysImage}
+                                alt="yarly"
+                                className="title-image"
+                            />
+                        </span>
+                        <span className="title-image-frame title-image-frame-most">
+                            <Image
+                                src={mostImage}
+                                alt="most"
+                                className="title-image"
+                            />
+                        </span>
+                        <span className="title-image-frame title-image-frame-recent">
+                            <Image
+                                src={recentImage}
+                                alt="recent"
+                                className="title-image"
+                            />
+                        </span>
+                    </Group>
+                </Title>
                 {loading && <Loader />}
                 {error && <Text c="red">Could not load posts: {error}</Text>}
                 {!loading && posts.length === 0 && (
