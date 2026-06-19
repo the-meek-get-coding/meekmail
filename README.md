@@ -80,6 +80,29 @@ aws secretsmanager put-secret-value \
 
 If you change `secret_name` in Terraform, use the output `yarly_secret_name` instead.
 
+## Amplify deploys
+
+Amplify is connected to the GitHub repository from `amplify_repository_url`. When `enable_amplify = true`, Terraform configures the Amplify branch to auto-build on pushes to `amplify_branch`.
+
+To create or update the Amplify app:
+
+```sh
+export TF_VAR_amplify_access_token='github_pat_...'
+terraform -chdir=infra apply
+```
+
+The GitHub token is only needed by Terraform when creating/updating the Amplify app connection. Do not commit it to `terraform.tfvars`.
+
+After apply, get the manual deployment webhook URL:
+
+```sh
+terraform -chdir=infra output -raw amplify_webhook_url
+```
+
+Add that value as a GitHub repository secret named `AMPLIFY_WEBHOOK_URL`. Then use GitHub Actions -> `Trigger Amplify Release` -> `Run workflow` to force a deployment immediately. Normal future pushes to `main` should also auto-build in Amplify.
+
+The `CI` workflow runs typecheck, tests, build, Terraform formatting, and Terraform validation on PRs and pushes to `main`.
+
 ## Email behavior
 
 Friend aliases are defined in `forwarding_aliases` and are exact-match only. There is no catch-all recipient.
