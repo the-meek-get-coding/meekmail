@@ -1,28 +1,144 @@
 body {
-  margin: 0;
-  background: #f7f7f5;
-  color: #191919;
+    margin: 0;
+    min-width: 320px;
+    background:
+        radial-gradient(
+            circle at 12% 18%,
+            rgba(255, 0, 199, 0.48),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 88% 8%,
+            rgba(0, 255, 195, 0.46),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 42% 92%,
+            rgba(255, 241, 0, 0.42),
+            transparent 28%
+        ),
+        url("../assets/faces.jpg") center / 280px auto repeat fixed;
+    color: #120019;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#root,
+.mantine-AppShell-root {
+    min-height: 100vh;
+}
+
+.mantine-AppShell-header {
+    z-index: 2;
+    background: rgba(255, 247, 0, 0.82);
+    border-bottom: 5px ridge #ff00c7;
+    box-shadow: 0 8px 0 rgba(0, 255, 195, 0.74);
+    backdrop-filter: saturate(250%) contrast(140%) blur(2px);
+}
+
+.mantine-AppShell-main {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+.mantine-Title-root {
+    color: #1b0035;
+    text-shadow:
+        2px 2px 0 #fff100,
+        -2px -1px 0 #00ffc3,
+        4px 4px 0 #ff00c7;
+}
+
+.mantine-Anchor-root {
+    color: #2600ff;
+    font-weight: 900;
+}
+
+.mantine-Anchor-root:hover {
+    color: #ff00c7;
+    text-decoration-style: wavy;
+}
+
+.mantine-Paper-root {
+    background: rgba(255, 255, 255, 0.78);
+    border: 4px double #2600ff;
+    box-shadow:
+        8px 8px 0 rgba(255, 0, 199, 0.62),
+        -6px -6px 0 rgba(0, 255, 195, 0.62);
+    transform: rotate(-0.8deg);
+}
+
+.mantine-SimpleGrid-root > .mantine-Paper-root:nth-child(even) {
+    transform: rotate(0.9deg);
+    border-color: #ff7a00;
+}
+
+.mantine-Button-root {
+    border: 3px outset #ff00c7;
+    box-shadow: 4px 4px 0 #00ffc3;
+    text-transform: lowercase;
+}
+
+.mantine-Image-root img {
+    border: 5px groove #fff100;
+    filter: saturate(1.35) contrast(1.12);
+}
+
+.mantine-Table-table {
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.mantine-Modal-content {
+    background: rgba(255, 255, 255, 0.92);
+    border: 5px dashed #ff00c7;
+    box-shadow: 10px 10px 0 #fff100;
 }
 
 .post-text {
-  white-space: pre-wrap;
-  line-height: 1.65;
+    white-space: pre-wrap;
+    line-height: 1.65;
+    background: rgba(255, 255, 255, 0.72);
+    border: 4px dotted #00ffc3;
+    padding: 16px;
 }
 
 .post-html {
-  line-height: 1.65;
-  max-width: 760px;
+    line-height: 1.65;
+    max-width: 760px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 4px dotted #00ffc3;
+    padding: 16px;
 }
 
 .post-html img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 5px groove #fff100;
 }
 
 .post-html blockquote {
-  border-left: 3px solid #ced4da;
-  margin-left: 0;
-  padding-left: 16px;
-  color: #495057;
+    border-left: 8px dashed #ff00c7;
+    margin-left: 0;
+    padding-left: 16px;
+    color: #2600ff;
+}
+
+@media (max-width: 48em) {
+    body {
+        background-size: 220px auto;
+    }
+
+    .mantine-Paper-root,
+    .mantine-SimpleGrid-root > .mantine-Paper-root:nth-child(even) {
+        transform: none;
+    }
 }

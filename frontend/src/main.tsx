@@ -9,7 +9,15 @@ import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider defaultColorScheme="light">
+    <MantineProvider
+      defaultColorScheme="light"
+      theme={{
+        fontFamily: "'Comic Sans MS', 'Comic Sans', cursive",
+        headings: {
+          fontFamily: "'Comic Sans MS', 'Comic Sans', cursive"
+        }
+      }}
+    >
       <Notifications position="top-right" />
       <App />
     </MantineProvider>
