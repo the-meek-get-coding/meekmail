@@ -12,6 +12,9 @@ enable_amplify          = true
 amplify_repository_url = "https://github.com/the-meek-get-coding/meekmail"
 amplify_branch         = "main"
 
+frontend_redirect_url = "https://main.di5o1o1d947rg.amplifyapp.com"
+# extra_frontend_urls   = ["https://main.dxxxxxxxxxxxxx.amplifyapp.com"]
+
 admin_emails = [
   "bogdanyr4@gmail.com"
 ]

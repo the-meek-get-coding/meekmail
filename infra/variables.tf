@@ -47,6 +47,18 @@ variable "amplify_access_token" {
   default     = null
 }
 
+variable "frontend_redirect_url" {
+  description = "Frontend URL Cognito should redirect to for admin login when no custom domain is enabled. Use localhost for local testing, or the Amplify default branch URL after Amplify is created."
+  type        = string
+  default     = "http://localhost:5173"
+}
+
+variable "extra_frontend_urls" {
+  description = "Additional frontend origins allowed for API CORS and Cognito callbacks, such as an Amplify default branch URL."
+  type        = list(string)
+  default     = []
+}
+
 variable "amplify_branch" {
   description = "Amplify branch to build."
   type        = string

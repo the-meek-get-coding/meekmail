@@ -14,6 +14,16 @@ enable_amplify          = false
 amplify_repository_url = "https://github.com/your-org/meekmail"
 amplify_branch         = "main"
 
+# To enable Amplify Hosting, set enable_amplify=true and provide the token as
+# TF_VAR_amplify_access_token in your shell rather than committing it here.
+# enable_amplify = true
+#
+# After the first Amplify apply, set frontend_redirect_url and extra_frontend_urls
+# to the Amplify branch URL if you want Cognito admin login to work there before
+# the custom domain is ready.
+# frontend_redirect_url = "https://main.dxxxxxxxxxxxxx.amplifyapp.com"
+# extra_frontend_urls   = ["https://main.dxxxxxxxxxxxxx.amplifyapp.com"]
+
 admin_emails = [
   "you@gmail.com"
 ]

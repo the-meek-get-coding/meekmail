@@ -17,5 +17,5 @@ locals {
     "https://${var.domain_name}",
     "https://www.${var.domain_name}"
   ] : []
-  frontend_urls = concat(local.localhost_frontend_urls, local.domain_frontend_urls)
+  frontend_urls = distinct(concat(local.localhost_frontend_urls, local.domain_frontend_urls, var.extra_frontend_urls))
 }

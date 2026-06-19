@@ -30,13 +30,20 @@ resource "aws_amplify_app" "frontend" {
     VITE_API_BASE_URL         = local.api_base_url
     VITE_COGNITO_AUTHORITY    = "https://cognito-idp.${var.aws_region}.amazonaws.com/${aws_cognito_user_pool.admins.id}"
     VITE_COGNITO_CLIENT_ID    = aws_cognito_user_pool_client.admin_spa.id
-    VITE_COGNITO_REDIRECT_URI = var.enable_domain_resources ? "https://${var.domain_name}/admin/callback" : "http://localhost:5173/admin/callback"
+    VITE_COGNITO_REDIRECT_URI = var.enable_domain_resources ? "https://${var.domain_name}/admin/callback" : "${var.frontend_redirect_url}/admin/callback"
   }
 
   custom_rule {
     source = "/<*>"
     status = "404-200"
     target = "/index.html"
+  }
+
+  lifecycle {
+    precondition {
+      condition     = var.amplify_repository_url == null || var.amplify_access_token != null
+      error_message = "Set amplify_access_token when enable_amplify=true and amplify_repository_url is set. Amplify needs this token to connect to GitHub and create webhooks."
+    }
   }
 }
 

@@ -60,8 +60,8 @@ resource "aws_cognito_user_pool_client" "admin_spa" {
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["openid", "email", "profile"]
-  callback_urls                        = [for url in local.frontend_urls : "${url}/admin/callback"]
-  logout_urls                          = [for url in local.frontend_urls : "${url}/admin"]
+  callback_urls                        = distinct(concat([for url in local.frontend_urls : "${url}/admin/callback"], ["${var.frontend_redirect_url}/admin/callback"]))
+  logout_urls                          = distinct(concat([for url in local.frontend_urls : "${url}/admin"], ["${var.frontend_redirect_url}/admin"]))
   supported_identity_providers         = ["COGNITO"]
 }
 
