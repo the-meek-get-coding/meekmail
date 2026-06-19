@@ -1,0 +1,22 @@
+{
+  "name": "meekmail",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "dev:api": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend -- --host 127.0.0.1",
+    "dev:local": "node scripts/dev-local.mjs",
+    "test": "npm run test -w backend",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend",
+    "terraform:fmt": "terraform -chdir=infra fmt -recursive",
+    "terraform:validate": "terraform -chdir=infra validate"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background: #f7f7f5;
+  color: #191919;
+}
+
+.post-text {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.post-html {
+  line-height: 1.65;
+  max-width: 760px;
+}
+
+.post-html img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.post-html blockquote {
+  border-left: 3px solid #ced4da;
+  margin-left: 0;
+  padding-left: 16px;
+  color: #495057;
+}

@@ -1,0 +1,27 @@
+aws_region  = "us-west-1"
+domain_name = "meekmail.com"
+
+# Set this to false while you do not control the domain nameservers yet.
+# Domainless mode skips Route 53 DNS records, SES receiving, ACM/API custom
+# domain validation, and Amplify custom domain association.
+enable_domain_resources = false
+enable_amplify          = false
+
+# If the registrar is already delegated to an existing Route 53 zone, set:
+# create_route53_zone = false
+# route53_zone_id     = "Z..."
+
+amplify_repository_url = "https://github.com/your-org/meekmail"
+amplify_branch         = "main"
+
+admin_emails = [
+  "you@gmail.com"
+]
+
+forwarding_aliases = {
+  "bogdan@meekmail.com" = ["bogdan@gmail.com"]
+  "friends@meekmail.com" = [
+    "bogdan@gmail.com",
+    "friend2@gmail.com"
+  ]
+}
