@@ -10,12 +10,12 @@ locals {
   forwarder_email = "${var.forwarder_local_part}@${var.domain_name}"
   api_domain      = "api.${var.domain_name}"
   assets_origin   = "https://${aws_cloudfront_distribution.assets.domain_name}"
-  api_base_url    = var.enable_domain_resources ? "https://${local.api_domain}" : aws_apigatewayv2_stage.default.invoke_url
+  api_base_url    = trimsuffix(var.enable_domain_resources ? "https://${local.api_domain}" : aws_apigatewayv2_stage.default.invoke_url, "/")
 
   localhost_frontend_urls = ["http://localhost:5173"]
   domain_frontend_urls = var.enable_domain_resources ? [
     "https://${var.domain_name}",
     "https://www.${var.domain_name}"
   ] : []
-  frontend_urls = distinct(concat(local.localhost_frontend_urls, local.domain_frontend_urls, var.extra_frontend_urls))
+  frontend_urls = distinct(concat(local.localhost_frontend_urls, local.domain_frontend_urls, [var.frontend_redirect_url], var.extra_frontend_urls))
 }
