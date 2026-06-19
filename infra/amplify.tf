@@ -5,6 +5,8 @@ resource "aws_amplify_app" "frontend" {
   access_token = var.amplify_access_token
   platform     = "WEB"
 
+  enable_branch_auto_build = true
+
   build_spec = <<-YAML
     version: 1
     frontend:
@@ -40,10 +42,10 @@ resource "aws_amplify_app" "frontend" {
   }
 
   lifecycle {
-    precondition {
-      condition     = var.amplify_repository_url == null || var.amplify_access_token != null
-      error_message = "Set amplify_access_token when enable_amplify=true and amplify_repository_url is set. Amplify needs this token to connect to GitHub and create webhooks."
-    }
+    ignore_changes = [
+      access_token,
+      oauth_token
+    ]
   }
 }
 
@@ -53,6 +55,15 @@ resource "aws_amplify_branch" "main" {
   branch_name = var.amplify_branch
   framework   = "React"
   stage       = "PRODUCTION"
+
+  enable_auto_build = true
+}
+
+resource "aws_amplify_webhook" "main" {
+  count       = var.enable_amplify ? 1 : 0
+  app_id      = aws_amplify_app.frontend[0].id
+  branch_name = aws_amplify_branch.main[0].branch_name
+  description = "Manual GitHub Actions deployment trigger for ${var.amplify_branch}"
 }
 
 resource "aws_amplify_domain_association" "frontend" {

@@ -47,3 +47,16 @@ output "cognito_client_id" {
 output "amplify_dns_records" {
   value = var.enable_domain_resources ? aws_amplify_domain_association.frontend[0].sub_domain : []
 }
+
+output "amplify_app_id" {
+  value = var.enable_amplify ? aws_amplify_app.frontend[0].id : null
+}
+
+output "amplify_branch_name" {
+  value = var.enable_amplify ? aws_amplify_branch.main[0].branch_name : null
+}
+
+output "amplify_webhook_url" {
+  value     = var.enable_amplify ? aws_amplify_webhook.main[0].url : null
+  sensitive = true
+}
